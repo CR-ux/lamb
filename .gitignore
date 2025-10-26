@@ -1,0 +1,5 @@
+
+# build artifacts
+_site/
+node_modules/
+.DS_Store
