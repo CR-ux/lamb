@@ -1,16 +1,16 @@
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"assets": "assets"});
-    eleventyConfig.addPassthroughCopy({"functions": "functions"}); // CF Functions
-    eleventyConfig.addWatchTarget("assets/css/ritual.css");
-
+    eleventyConfig.addWatchTarget("assets");
+  
     return {
-        dir: {
+      dir: {
         input: ".",
-        includes: "./_includes",
-        data: "./_data",
+        includes: "_includes",
+        data: "_data",
         output: "_site"
-        },
-        markdownTemplateEngine: "njk",
-        htmlTemplateEngine: "njk"
-        };
+      },
+      markdownTemplateEngine: "njk",
+      htmlTemplateEngine: "njk",
+      templateFormats: ["md", "njk", "html"]
     };
+  };

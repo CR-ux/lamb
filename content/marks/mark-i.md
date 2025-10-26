@@ -1,5 +1,5 @@
 ---
-layout: portal.njk
+layout: "portal.njk"
 title: "Mark The Ist"
 subtitle: "DO KNOT CYTE YOUR SOURCE IS"
 slug: "mark-i"
