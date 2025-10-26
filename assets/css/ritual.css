@@ -65,8 +65,134 @@ body.void {
   }
   
   .forgive-frag {
-    position: absolute;
-    color: rgba(255,255,255,0.15);
-    font-family: "EB Garamond", serif;
+    color: rgba(255,255,255,0.5); /* stronger bleed */
     mix-blend-mode: difference;
+    text-shadow: 0 0 6px rgba(255,255,255,0.35),
+                 0 0 12px rgba(124,31,36,0.35),
+                 0 0 24px rgba(124,31,36,0.25);
   }
+
+
+  /* ------------------------------ */
+/* LAB-OCCULT SEAL (six fields)   */
+/* ------------------------------ */
+
+.seal-inputs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0.75rem 0 1rem;
+}
+
+.pwseg {
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0.25rem;
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(20,20,20,0.45);
+  color: #fff;
+  outline: none;
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,0.4);
+  font-family: "Courier New", monospace;
+}
+
+.pwseg:focus {
+  border-color: rgba(124,31,36,0.95);
+  box-shadow: 0 0 12px rgba(124,31,36,0.12), inset 0 -6px 18px rgba(0,0,0,0.45);
+}
+
+.seal-box { text-align: center; max-width: 680px; margin: 0 auto; }
+
+.notice { color: #f6d2d2; margin-top: 0.6rem; }
+
+/* recursion/leak visuals */
+.recursion { position: fixed; inset: 0; pointer-events: none; z-index: 2; }
+.forgive-frag { position: absolute; transition: opacity 2.8s linear, transform 4s ease; will-change: transform, opacity; mix-blend-mode: screen; color: rgba(255,230,220,0.09); font-family: "EB Garamond", serif; }
+.forgive-frag.fade { opacity: 0; transform: translateY(6vh) scale(1.02); }
+
+/* longer narrative leak fragments */
+.leak-frag {
+  position: absolute;
+  max-width: 70ch;
+  padding: .8rem .9rem;
+  color: #f3efe9;
+  font-size: 0.95rem;
+  line-height: 3.2;
+  border-radius: 20px;
+  max-height: 200vh;
+  mix-blend-mode: screen;
+  opacity: .98;
+  transition: opacity 1.2s ease;
+}
+.leak-frag.fade { opacity: 0; transform: translateY(-3vh); }
+
+/* calm state after unlock */
+.void-calm .leak-frag { opacity: 0.12; mix-blend-mode: normal; }
+
+/* ---------- Bottom stack container ---------- */
+#leak-stack {
+  position: absolute;
+  left: 40%;
+  right: 30%;
+  bottom: 40%;
+  flex-direction: column-reverse;
+  gap: 6rem;
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+
+/* ---------- Background recursion louder ---------- */
+.forgive-frag {
+  position: absolute;
+  color: rgba(255,255,255,0.50); /* louder bleed */
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.35),
+    0 0 12px rgba(124,31,36,0.35),
+    0 0 24px rgba(124,31,36,0.25);
+  mix-blend-mode: difference;
+  transition: opacity 2.8s linear, transform 4s ease;
+  will-change: transform, opacity;
+}
+.forgive-frag.fade { opacity: 0; transform: translateY(6vh) scale(1.02); }
+
+/* ---------- Violent leak blocks ---------- */
+.leak-frag {
+  display: block;
+  white-space: pre-wrap;           /* preserves line breaks + wraps */
+  word-break: break-word;          /* prevents long glyph lines overlap */
+  overflow: visible; 
+  color: #f3efe9;
+  font-size: 0.98rem;
+  line-height: 3.0;
+  mix-blend-mode: difference;
+  opacity: .98;
+  transition: opacity 1.2s ease, transform 0.9s ease;
+}
+
+@keyframes violentShake {
+  0% { transform: translate(0,0) rotate(0deg); }
+  20% { transform: translate(-1px,1px) rotate(-0.4deg); }
+  40% { transform: translate(2px,-1px) rotate(0.6deg); }
+  60% { transform: translate(-2px,2px) rotate(-0.7deg); }
+  80% { transform: translate(1px,-2px) rotate(0.5deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+.leak-frag.violent {
+  animation: violentShake 140ms infinite;
+}
+
+.leak-frag.fade {
+  opacity: 0;
+  transform: translateY(-3vh);
+}
+
+/* Calm background after unlock */
+.void-calm #leak-stack .leak-frag { opacity: 0.14; mix-blend-mode: normal; animation: none; }

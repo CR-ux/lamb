@@ -1,4 +1,4 @@
----
+0---
 layout: "portal.njk"
 title: "Mark The Ist"
 subtitle: "DO KNOT CYTE YOUR SOURCE IS"
@@ -7,8 +7,7 @@ mark_id: 1
 status: "portal"
 stave_image: "/assets/staves/mark-i.png"
 permalink: "/mark-i/index.html"
-password_hint: "Transcribe the stave."
-password_hash: "sha256:4e8d595a5a5dce7f52e5a3aa248c9233771bde24dfdc91e2ef4d4c3c73f5f4e0"
+password: "07 12 03 18 09 22"
 
 aria_abstract: "None of this means anything."
 dne_abstract: "Everything means something."
