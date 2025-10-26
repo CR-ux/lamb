@@ -6,7 +6,7 @@ slug: "mark-i"
 mark_id: 1
 status: "portal"
 stave_image: "/assets/staves/mark-i.png"
-
+permalink: "/mark-i/index.html"
 password_hint: "Transcribe the stave."
 password_hash: "sha256:PUT_HASH_HERE"
 
