@@ -1,0 +1,66 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<figure>
+  <img src="{{ stave_image }}" alt="Stave for {{ title }}" />
+  <figcaption>Figure M-{{ mark_id }} — Ritual Stave (transcribe to enter)</figcaption>
+</figure>
+
+<div class="seal-box">
+  <p><strong>Opening the Seal</strong></p>
+  <p class="notice">Hint: {{ password_hint }}</p>
+  <input id="pw" class="input" type="password" placeholder="Enter the stave’s transcription">
+  <button id="open" class="button">Unseal</button>
+  <div id="fail" class="notice hidden">The seal holds. Listen again.</div>
+</div>
+
+<div id="unlocked" class="hidden">
+  <hr>
+  {% if audio_stream_url %}
+  <h2>Stream</h2>
+  <div class="embed">
+    <iframe src="{{ audio_stream_url }}" width="100%" height="120" frameborder="0"></iframe>
+  </div>
+  {% endif %}
+
+  {% if download_url %}
+  <p><a class="button" href="{{ download_url }}">Download Mark {{ mark_id }}</a></p>
+  {% endif %}
+
+  <h2>Abstracts (to come)</h2>
+  <p><em>ARIA:</em> {{ aria_abstract }}</p>
+  <p><em>DNE:</em> {{ dne_abstract }}</p>
+
+  <h3>Crosslinks</h3>
+  <ul>
+    {% if hypertext_link %}<li>CGMS Hypertext — <a href="{{ hypertext_link }}">enter</a></li>{% endif %}
+    {% if library_link %}<li>Library — <a href="{{ library_link }}">catalogue</a></li>{% endif %}
+    {% if treatise_link %}<li>Lexicomythography Papers — <a href="{{ treatise_link }}">read</a></li>{% endif %}
+  </ul>
+</div>
+
+<script>
+// Client-side ritual gate (SHA-256 check)
+// NOTE: this is ceremonial, not cryptographic security.
+async function sha256(str) {
+  const enc = new TextEncoder().encode(str.trim());
+  const buf = await crypto.subtle.digest('SHA-256', enc);
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+document.getElementById('open').addEventListener('click', async () => {
+  const input = document.getElementById('pw').value;
+  const hash = await sha256(input);
+  const target = "{{ password_hash | replace('sha256:', '') }}";
+  if (hash === target) {
+    document.querySelector('.seal-box').classList.add('hidden');
+    document.getElementById('unlocked').classList.remove('hidden');
+  } else {
+    document.getElementById('fail').classList.remove('hidden');
+  }
+});
+</script>
+
+{% endblock %}

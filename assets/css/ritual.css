@@ -1,0 +1,15 @@
+body.parchment {
+    background: #f2ecdc url('/assets/parchment/skin-01.jpg') center/cover no-repeat fixed;
+    color: #2a2018;
+    font-family: "EB Garamond", Georgia, serif;
+    line-height: 1.5;
+}
+main { max-width: 720px; margin: 6rem auto; padding: 0 1rem; }
+figure { margin: 2rem 0; }
+.sigil { opacity: .75; }
+hr { border: none; height: 1px; background: #7c5a44; opacity: .3; }
+.seal-box { border: 1px solid rgba(60,40,30,.25); padding: 1.25rem; background: rgba(255,255,255,.35); }
+.button { background: #7c1f24; color: #fff; padding: .5rem 1rem; border: 0; cursor: pointer; }
+.input { width: 100%; padding: .5rem; border: 1px solid #7c5a44; background: rgba(255,255,255,.6); }
+.hidden { display: none; }
+.notice { font-size: .9rem; opacity: .8; }
